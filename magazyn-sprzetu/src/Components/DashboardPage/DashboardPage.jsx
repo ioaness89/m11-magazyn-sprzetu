@@ -14,13 +14,7 @@ const DashboardPage = ({items}) => {
     ).length;
 
     const listaRzeczyDoUzupelnienia = items
-        .filter(item => item.quantity < item.minimumQuantity)
-        .map(item => ({
-            ...item,
-            status: item.quantity === 0
-                ? "Brak produktu"
-                : "Stan minimalny"
-        }));
+        .filter(item => item.status === "Brak produktu" || item.status === "Stan minimalny");
     {
         let listaRzeczyDoUzupelnienia = [];
         let wskaznik = 0;

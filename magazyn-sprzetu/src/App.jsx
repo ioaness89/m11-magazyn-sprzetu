@@ -5,7 +5,7 @@ import Navbar from './Components/Navbar/Navbar';
 import InventoryPage from './Components/InventoryPage/InventoryPage';
 import DashboardPage from './Components/DashboardPage/DashboardPage';
 import NewItemPage from './Components/NewItemPage/NewItemPage';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 
@@ -110,6 +110,20 @@ function App() {
     }
   ]);
 
+  useEffect(() => {
+    setItems(prevItems =>
+      prevItems.map(item => ({
+        ...item,
+        status:
+          item.quantity === 0
+            ? "Brak produktu"
+            : item.quantity < item.minimumQuantity
+              ? "Stan minimalny"
+              : "Stan prawidłowy"
+      }))
+    );
+  }, []);
+
 
   return (
     <BrowserRouter>
@@ -117,7 +131,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<DashboardPage items={items}/>}/>
-        <Route path="/inventory" element={<InventoryPage items={items}/>}/>
+        <Route path="/inventory" element={<InventoryPage items={items} setItems={setItems}/>}/>
         <Route path="/inventory/new" element={<NewItemPage/>}/>
       </Routes>
     </BrowserRouter>
