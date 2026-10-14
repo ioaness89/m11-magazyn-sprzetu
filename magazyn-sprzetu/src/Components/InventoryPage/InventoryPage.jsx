@@ -2,7 +2,7 @@ import InventoryFilters from "./InventoryFilters/InventoryFilters";
 import InventoryTable from "./InventoryTable/InventoryTable";
 import { useState } from "react";
 
-const InventoryPage = ({items}) => {
+const InventoryPage = ({items, setItems}) => {
     const [filters, setfilters] = useState({
         search: "",
         category: "all",
@@ -27,7 +27,7 @@ const InventoryPage = ({items}) => {
         </div>
         
         <InventoryFilters filters={filters} setFilters={setfilters} items={items}/>
-        <InventoryTable items={filteredItems}/>
+        <InventoryTable items={filteredItems} setItems={setItems}/>
     </div>
     </>
 }

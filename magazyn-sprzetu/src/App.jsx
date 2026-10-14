@@ -5,13 +5,21 @@ import Navbar from './Components/Navbar/Navbar';
 import InventoryPage from './Components/InventoryPage/InventoryPage';
 import DashboardPage from './Components/DashboardPage/DashboardPage';
 import NewItemPage from './Components/NewItemPage/NewItemPage';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import ItemDetailsPage from './Components/ItemDetailsPage/ItemDetailsPage';
 
 
 
 
 function App() {
-  const [items, setItems] = useState([
+  const [items, setItems] = useState(() => {
+  const savedItems = localStorage.getItem("items");
+
+  if (savedItems) {
+    return JSON.parse(savedItems);
+  }
+
+  return [
     {
       id: 1,
       name: "Klawiatura USB",
@@ -108,8 +116,25 @@ function App() {
       minimumQuantity: 2,
       location: "Magazyn A"
     }
-  ]);
+  ];
+});
 
+
+  useEffect(() => {
+    setItems(prevItems =>
+      prevItems.map(item => ({
+        ...item,
+        status:
+          item.quantity === 0
+            ? "Brak produktu"
+            : item.quantity < item.minimumQuantity
+              ? "Stan minimalny"
+              : "Stan prawidłowy"
+      }))
+    );
+  }, []);
+
+  useEffect(() => {localStorage.setItem("items", JSON.stringify(items));}, [items]);
 
   return (
     <BrowserRouter>
@@ -117,8 +142,9 @@ function App() {
 
       <Routes>
         <Route path="/" element={<DashboardPage items={items}/>}/>
-        <Route path="/inventory" element={<InventoryPage items={items}/>}/>
+        <Route path="/inventory" element={<InventoryPage items={items} setItems={setItems}/>}/>
         <Route path="/inventory/new" element={<NewItemPage/>}/>
+        <Route path='/inventory/:id' element={<ItemDetailsPage items={items}/>}></Route>
       </Routes>
     </BrowserRouter>
   )
