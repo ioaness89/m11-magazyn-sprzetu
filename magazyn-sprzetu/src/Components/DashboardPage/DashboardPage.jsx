@@ -15,6 +15,8 @@ const DashboardPage = ({items}) => {
 
     const listaRzeczyDoUzupelnienia = items
         .filter(item => item.status === "Brak produktu" || item.status === "Stan minimalny");
+
+        
     {
         let listaRzeczyDoUzupelnienia = [];
         let wskaznik = 0;

@@ -34,11 +34,11 @@ const InventoryRow = ({id, name, category, quantity, minimumQuantity, location, 
         <td>{location}</td>
         <td>{status}</td>
         <td>
-            <button onClick={() => changeItemAmount(true)}>
-                +1
+            <button onClick={() => changeItemAmount(true)} className="btn btn-outline-success btn-sm me-1">
+                +
             </button>
-            <button onClick={() => changeItemAmount(false)}>
-                -1
+            <button onClick={() => changeItemAmount(false)} className="btn btn-outline-danger btn-sm">
+                -
             </button>
         </td>
     </tr>
