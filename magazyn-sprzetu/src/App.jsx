@@ -5,8 +5,9 @@ import Navbar from './Components/Navbar/Navbar';
 import InventoryPage from './Components/InventoryPage/InventoryPage';
 import DashboardPage from './Components/DashboardPage/DashboardPage';
 import NewItemPage from './Components/NewItemPage/NewItemPage';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import ItemDetailsPage from './Components/ItemDetailsPage/ItemDetailsPage';
+
 
 
 
@@ -136,6 +137,52 @@ function App() {
 
   useEffect(() => {localStorage.setItem("items", JSON.stringify(items));}, [items]);
 
+  const increaseStock = useCallback((id, quantity) => {
+    setItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === Number(id)
+          ? {
+              ...item,
+              quantity: item.quantity + quantity,
+            }
+          : item
+      )
+    );
+  }, [items]);
+
+  const decreaseStock = useCallback((id, quantity) => {
+    setItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === Number(id) && item.quantity > 0
+          ? {
+              ...item,
+              quantity: item.quantity - quantity,
+            }
+          : item
+      )
+    );
+  },[items]);
+
+  const deleteItem = useCallback((id) => {
+    const item = items.find((item) => item.id === Number(id));
+
+    if (!item) {
+      return;
+    }
+
+    const confirmed = window.confirm(
+      `Czy na pewno chcesz usunąć pozycję "${item.name}"?`
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    setItems((prevItems) =>
+      prevItems.filter((item) => item.id !== Number(id))
+    );
+  }, [items]);
+
   return (
     <BrowserRouter>
       <Navbar></Navbar>
@@ -143,8 +190,9 @@ function App() {
       <Routes>
         <Route path="/" element={<DashboardPage items={items}/>}/>
         <Route path="/inventory" element={<InventoryPage items={items} setItems={setItems}/>}/>
-        <Route path="/inventory/new" element={<NewItemPage/>}/>
-        <Route path='/inventory/:id' element={<ItemDetailsPage items={items}/>}></Route>
+        <Route path="/inventory/new" element={<NewItemPage items={items} setItems={setItems}/>}/>
+        <Route path='/inventory/:id' element={<ItemDetailsPage items={items} setItems={setItems}
+         increaseStock={increaseStock} decreaseStock={decreaseStock} deleteItem={deleteItem}/>}></Route>
       </Routes>
     </BrowserRouter>
   )
