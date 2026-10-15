@@ -25,13 +25,13 @@
 ## Widoki aplikacji
 
 ### Dashboard
-![Dashboard preview](./widok_dashboard.png)
+![Dashboard preview](./docs/screenshots/widok_dashboard.png)
 ### Magazyn
-![Dashboard preview](./widok_magazyn.png)
+![Dashboard preview](./docs/screenshots/widok_magazyn.png)
 ### Nowy produkt
-![Dashboard preview](./widok_nowyprodukt.png)
+![Dashboard preview](./docs/screenshots/widok_nowyprodukt.png)
 ### Szczegóły produktu
-![Dashboard preview](./widok_szczegoly.png)
+![Dashboard preview](./docs/screenshots/widok_szczegoly.png)
 
 
 
