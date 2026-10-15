@@ -1,16 +1,37 @@
-# React + Vite
+# Projekt grupowy aplikacji webowej - magazyn sprzętu
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Funkcjonalności
 
-Currently, two official plugins are available:
+- Widok tabeli zawierającej wszystkie produkty w magazynie
+- Widok szczegółów danego produktu
+- Formularz dodania nowego produktu
+- Możliwość zwiększania i zmniejszania ilości produktów w magazynie oraz ich usuwanie
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Technologie
 
-## React Compiler
+- Bootstrap 5
+- React + Vite
+- React Router
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Routing
 
-## Expanding the ESLint configuration
+| Route | Component | Description |
+|:------|:----------|:------------|
+| `/` | `DashboardPage` | Podsumowanie magazynu |
+| `/inventory` | `InventoryPage` | Widok wszystkich produktów
+| `/inventory/new` | `NewItemPage` | Dodawanie nowego produktu
+| `/inventory/:id` | `ItemDetailsPage` | Szczegóły danego produktu
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Widoki aplikacji
+
+### Dashboard
+![Dashboard preview](../docs/screenshots/widok_dashboard.png)
+### Magazyn
+![Dashboard preview](../docs/screenshots/widok_magazyn.png)
+### Nowy produkt
+![Dashboard preview](../docs/screenshots/widok_nowyprodukt.png)
+### Szczegóły produktu
+![Dashboard preview](../docs/screenshots/widok_szczegoly.png)
+
+
+

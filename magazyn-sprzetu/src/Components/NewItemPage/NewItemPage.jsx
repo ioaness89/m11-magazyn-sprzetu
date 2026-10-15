@@ -200,14 +200,7 @@ function Formularz({ items, setItems }) {
 
                     <button
                         type="submit"
-                        className="btn text-white btn-lg w-100 shadow-sm"
-                        style={{
-                            background: "linear-gradient(123deg, #00ff00 0%, #ff007f 27%, #ffff00 51%, #00ffff 74%, #ff0000 100%)",
-                            padding: "50px",
-                            color: "#000000",
-                            fontFamily: "Comic Sans MS, sans-serif",
-                            fontWeight: "bold"
-                        }}
+                        className="btn text-white btn-lg w-100 shadow-sm bg-black"
                     >
                         <i className="bi bi-plus-circle me-2"></i>
                         Dodaj produkt do magazynu
